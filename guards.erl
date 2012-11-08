@@ -11,7 +11,6 @@ right_age(X) when X >= 16, X =< 104 ->
 right_age(_) ->
     false.
 
-
 wrong_age(X) when X < 16; X > 104 ->
     true;
 wrong_age(_) ->
