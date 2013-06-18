@@ -1,5 +1,5 @@
 -module(what_the_if).
--export([heh_fine/0,oh_god/1,help_me/1,insert/2,beach/1]).
+-export([heh_fine/0,oh_god/1,help_me/1,insert/2,beach/1,if_one/1]).
 
 heh_fine() ->
     if 1 =:= 1 ->
@@ -50,3 +50,8 @@ beach(Temperature) ->
 	_ ->
 	    'avoid beach'
     end.
+
+
+
+if_one(2) ->
+    true.
