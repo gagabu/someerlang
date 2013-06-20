@@ -1,5 +1,5 @@
 -module(tail).
--export([tail_fac/1,tail_len/1,duplicate/2,tail_duplicate/2,reverse/1,tail_reverse/1]).
+-export([tail_fac/1,tail_len/1,duplicate/2,tail_duplicate/2,reverse/1,tail_reverse/1,sublist/2,tail_sublist/2,zip/2,quicksort/1,lc_quicksort/1]).
 
 
 tail_fac(N) -> tail_fac(N, 1).
@@ -30,3 +30,72 @@ tail_reverse(L) -> tail_reverse(L, []).
 
 tail_reverse([], Acc) -> Acc;
 tail_reverse([H|T], Acc) -> tail_reverse(T,[H|Acc]).
+
+
+sublist(_,0) -> [];
+sublist([],_) -> [];
+sublist([H|T],N) when N > 0 -> [H] ++ sublist(T, N -1).
+
+
+tail_sublist(L,N) -> tail_reverse(tail_sublist(L,N,[])).
+tail_sublist(_,0,Acc) -> Acc;
+tail_sublist([],_,Acc) -> Acc;
+tail_sublist([H|T],N,Acc) when N > 0 -> tail_sublist(T, N - 1,[H|Acc]).
+
+
+
+zip([],[]) -> [];
+zip([X|Xs],[Y|Ys]) -> [{X,Y}|zip(Xs,Ys)].
+
+
+quicksort([]) -> [];
+quicksort([Pivot|Rest]) -> 
+	{Smaller,Larger} = partition(Pivot,Rest,[],[]),
+	quicksort(Smaller) ++ [Pivot] ++ quicksort(Larger).
+
+
+partition(_,[],Smaller,Larger) -> {Smaller,Larger};
+partition(Pivot,[H|T],Smaller,Larger) -> 
+	if H =< Pivot -> partition(Pivot, T, [H|Smaller], Larger);
+	   H >  Pivot -> partition(Pivot, T, Smaller, [H|Larger])
+	end.
+
+
+lc_quicksort([]) -> [];
+lc_quicksort([Pivot|Rest]) -> 
+	lc_quicksort([Smaller || Smaller <- Rest, Smaller =< Pivot])
+	++ [Pivot] ++
+	lc_quicksort([Larger || Larger <- Rest, Larger > Pivot]).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
