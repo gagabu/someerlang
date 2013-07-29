@@ -1,4 +1,8 @@
 *.beam
 *~
 .idea
-
+.eunit
+deps
+*.o
+*.plt
+erl_crash.dump
