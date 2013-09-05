@@ -8,3 +8,10 @@ throws(F) ->
 		Throw -> {throw, caught, Throw}
 	end.
 
+
+catcher(X,Y) ->
+	case catch X/Y of 
+		{'EXIT', {badarith, _}} -> "uh oh";
+		N -> N
+	end.
+
